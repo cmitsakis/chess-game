@@ -11,6 +11,8 @@ It might not adhere to the best practices.
 
 Not recommended for production use yet.
 
+![screenshot](../media/screenshot.png?raw=true)
+
 ## Usage
 
 Download `index.js`, in the same directory create a file `index.html` with the following HTML code, and start a web server (e.g. `python -m http.server 8080`).
