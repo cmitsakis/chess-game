@@ -1,0 +1,22 @@
+{
+  "name": "chess-game",
+  "version": "0.0.1",
+  "description": "a web component for displaying chess games",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmitsakis/chess-game.git"
+  },
+  "keywords": [
+    "chess",
+    "chessboard"
+  ],
+  "author": "Charalampos Mitsakis",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "chess.js": "^0.13.3"
+  }
+}
