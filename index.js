@@ -17,10 +17,9 @@ template.innerHTML = `
         </button>
       </div>
     </div>
-    <div style="float: left;">
-      <ul id="moves">
-      </ul>
-    </div>
+    <table style="float: left; width: 10em; margin: 0.5em;">
+      <tbody id="moves"></tbody>
+    </table>
   </div>`;
 
 class ChessGame extends HTMLElement {
@@ -72,12 +71,20 @@ class ChessGame extends HTMLElement {
     this.shadowRoot.getElementById('board').setAttribute("fen", currentPosition);
     const movesHtmlArray = [];
     this.history.forEach(function (move, i) {
+      if (i % 2 == 0) {
+        movesHtmlArray.push('<tr>');
+        movesHtmlArray.push('<td style="font-size: 130%;">'+(i+2)/2+'.</td>');
+      }
       if (i+1 === currentPositionIndex) {
-        movesHtmlArray.push('<li style="font-size: 130%; font-weight: bold; outline: 2px solid #000;">' + move + '</li>');
+        movesHtmlArray.push('<td style="font-size: 130%; outline: 2px solid #000;">' + move + '</td>');
       } else {
-        movesHtmlArray.push('<li style="font-size: 130%;">' + move + '</li>');
+        movesHtmlArray.push('<td style="font-size: 130%;">' + move + '</td>');
+      }
+      if (i % 2 == 1) {
+        movesHtmlArray.push('</tr>');
       }
     });
+    console.log(movesHtmlArray.join('\n'));
     this.shadowRoot.getElementById('moves').innerHTML = movesHtmlArray.join('\n');
   }
 }
