@@ -86,7 +86,6 @@ class ChessGame extends HTMLElement {
         movesHtmlArray.push('</tr>');
       }
     });
-    console.log(movesHtmlArray.join('\n'));
     this.shadowRoot.getElementById('moves').innerHTML = movesHtmlArray.join('\n');
     const currentMoveElement = this.shadowRoot.getElementById('current-move')
     if (currentMoveElement == null) {
