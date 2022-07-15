@@ -95,6 +95,8 @@ class ChessGame extends HTMLElement {
     } else {
       this.shadowRoot.getElementById('moves-scroll').scrollTop = this.shadowRoot.getElementById('current-move').offsetTop - this.shadowRoot.getElementById('moves-scroll').offsetHeight / 2;
     }
+    this.shadowRoot.getElementById('prev').disabled = currentPositionIndex == 0;
+    this.shadowRoot.getElementById('next').disabled = currentPositionIndex == this.history.length;
   }
 }
 
