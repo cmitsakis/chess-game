@@ -17,7 +17,7 @@ template.innerHTML = `
         </button>
       </div>
     </div>
-    <div style="width: 8em; max-height: 25em; margin: 0.5em; overflow: auto;">
+    <div id="moves-scroll" style="width: 8em; max-height: 25em; margin: 0.5em; overflow: auto; scroll-behavior: smooth;">
       <table style="font-size: 1em;">
         <tbody id="moves"></tbody>
       </table>
@@ -78,7 +78,7 @@ class ChessGame extends HTMLElement {
         movesHtmlArray.push('<td>' + (i+2)/2 + '.</td>');
       }
       if (i+1 === currentPositionIndex) {
-        movesHtmlArray.push('<td style="outline: 2px solid #000;">' + move + '</td>');
+        movesHtmlArray.push('<td id="current-move" style="outline: 2px solid #000;">' + move + '</td>');
       } else {
         movesHtmlArray.push('<td>' + move + '</td>');
       }
@@ -88,6 +88,12 @@ class ChessGame extends HTMLElement {
     });
     console.log(movesHtmlArray.join('\n'));
     this.shadowRoot.getElementById('moves').innerHTML = movesHtmlArray.join('\n');
+    const currentMoveElement = this.shadowRoot.getElementById('current-move')
+    if (currentMoveElement == null) {
+      this.shadowRoot.getElementById('moves-scroll').scrollTop = 0;
+    } else {
+      this.shadowRoot.getElementById('moves-scroll').scrollTop = this.shadowRoot.getElementById('current-move').offsetTop - this.shadowRoot.getElementById('moves-scroll').offsetHeight / 2;
+    }
   }
 }
 
