@@ -8,19 +8,21 @@ template.innerHTML = `
   <div style="display: inline-flex;">
     <div style="display: table; width: 25em;">
       <g-chess-board id="board" fen="start"></g-chess-board>
+    </div>
+    <div style="display: table; width: 8em;">
       <div style="display: flex; justify-content: space-evenly;">
-        <button id="prev" style="margin: 1em; padding: 0.7em; font-size: 1em; font-weight: bold;">
-          &#60;&#60; Previous Move
+        <button id="prev" style="font-size: 2em; font-weight: bold; padding: 0em 0.5em;">
+          &#60;
         </button>
-        <button id="next" style="margin: 1em; padding: 0.7em; font-size: 1em; font-weight: bold;">
-          Next Move &#62;&#62;
+        <button id="next" style="font-size: 2em; font-weight: bold; padding: 0em 0.5em;">
+          &#62;
         </button>
       </div>
-    </div>
-    <div id="moves-scroll" style="width: 8em; max-height: 25em; margin: 0.5em; overflow: auto; scroll-behavior: smooth;">
-      <table style="font-size: 1em;">
-        <tbody id="moves"></tbody>
-      </table>
+      <div id="moves-scroll" style="width: 8em; max-height: 22em; margin: 0.5em; overflow: auto; scroll-behavior: smooth;">
+        <table style="font-size: 1em;">
+          <tbody id="moves"></tbody>
+        </table>
+      </div>
     </div>
   </div>`;
 
