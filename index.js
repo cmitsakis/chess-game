@@ -5,8 +5,8 @@ import { Chess } from 'chess.js'
 
 const template = document.createElement('template');
 template.innerHTML = `
-  <div>
-    <div style="display: table; width: 25em; float: left;">
+  <div style="display: inline-flex;">
+    <div style="display: table; width: 25em;">
       <g-chess-board id="board" fen="start"></g-chess-board>
       <div style="display: flex; justify-content: space-evenly;">
         <button id="prev" style="margin: 1em; padding: 0.7em; font-size: 1em; font-weight: bold;">
@@ -17,9 +17,11 @@ template.innerHTML = `
         </button>
       </div>
     </div>
-    <table style="float: left; width: 8em; margin: 0.5em; font-size: 1em;">
-      <tbody id="moves"></tbody>
-    </table>
+    <div style="width: 8em; max-height: 25em; margin: 0.5em; overflow: auto;">
+      <table style="font-size: 1em;">
+        <tbody id="moves"></tbody>
+      </table>
+    </div>
   </div>`;
 
 class ChessGame extends HTMLElement {
