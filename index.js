@@ -6,18 +6,18 @@ import { Chess } from 'chess.js'
 const template = document.createElement('template');
 template.innerHTML = `
   <div>
-    <div style="display: table; width: 40em; float: left;">
+    <div style="display: table; width: 25em; float: left;">
       <g-chess-board id="board" fen="start"></g-chess-board>
       <div style="display: flex; justify-content: space-evenly;">
-        <button id="prev" style="margin: 1em; padding: 0.7em; font-size: 130%; font-weight: bold;">
+        <button id="prev" style="margin: 1em; padding: 0.7em; font-size: 1em; font-weight: bold;">
           &#60;&#60; Previous Move
         </button>
-        <button id="next" style="margin: 1em; padding: 0.7em; font-size: 130%; font-weight: bold;">
+        <button id="next" style="margin: 1em; padding: 0.7em; font-size: 1em; font-weight: bold;">
           Next Move &#62;&#62;
         </button>
       </div>
     </div>
-    <table style="float: left; width: 10em; margin: 0.5em;">
+    <table style="float: left; width: 8em; margin: 0.5em; font-size: 1em;">
       <tbody id="moves"></tbody>
     </table>
   </div>`;
@@ -73,12 +73,12 @@ class ChessGame extends HTMLElement {
     this.history.forEach(function (move, i) {
       if (i % 2 == 0) {
         movesHtmlArray.push('<tr>');
-        movesHtmlArray.push('<td style="font-size: 130%;">'+(i+2)/2+'.</td>');
+        movesHtmlArray.push('<td>' + (i+2)/2 + '.</td>');
       }
       if (i+1 === currentPositionIndex) {
-        movesHtmlArray.push('<td style="font-size: 130%; outline: 2px solid #000;">' + move + '</td>');
+        movesHtmlArray.push('<td style="outline: 2px solid #000;">' + move + '</td>');
       } else {
-        movesHtmlArray.push('<td style="font-size: 130%;">' + move + '</td>');
+        movesHtmlArray.push('<td>' + move + '</td>');
       }
       if (i % 2 == 1) {
         movesHtmlArray.push('</tr>');
