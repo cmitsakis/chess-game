@@ -20,6 +20,7 @@ template.innerHTML = `
       </div>
       <div style="display: flex; justify-content: space-evenly; margin: 0.5em 0em 0em 0em;">
         <button id="btn-autoplay" style="font-size: 1em;">&#x25B6;</button>
+        <button id="btn-flip" style="font-size: 1em;">&duarr;</button>
       </div>
       <div id="moves-scroll" style="width: 8em; max-height: 20em; margin: 0.5em; overflow: auto; scroll-behavior: smooth;">
         <table style="font-size: 1em;">
@@ -67,6 +68,19 @@ class ChessGame extends HTMLElement {
       if (this.autoplayEnabled) {
         this._autoplayStart();
       }
+    };
+
+    this.shadowRoot.getElementById('btn-flip').onclick = () => {
+      const boardElement = this.shadowRoot.getElementById('board');
+      const orientation = boardElement.getAttribute('orientation') || 'white';
+      const flippedOrientation = (() => {
+        if (orientation == 'white') {
+          return 'black';
+        } else {
+          return 'white';
+        }
+      })();
+      boardElement.setAttribute('orientation', flippedOrientation);
     };
   }
 
