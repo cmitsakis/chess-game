@@ -38,6 +38,23 @@ You can make it work on Firefox by downloading `index.js` and `https://unpkg.com
 </html>
 ```
 
+### Autoplay
+
+Users can enable/disable autoplay by clicking the autoplay button.
+
+If you want autoplay to be enabled when the web page is loaded, you can use the `autoplay` attribute:
+
+```html
+    <chess-game autoplay pgn="1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.Bb5+ c6 7.dxc6 bxc6 8.Qf3 Rb8"></chess-game>
+```
+
+By default autoplay makes 1 move per second, so the period is 1 second.
+You can use the `autoplay-period` attribute to set the period in milliseconds:
+
+```html
+    <chess-game autoplay-period=1500 pgn="1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.Bb5+ c6 7.dxc6 bxc6 8.Qf3 Rb8"></chess-game>
+```
+
 ## Contributing
 
 Bug reports, bug fixes, and UI improvements, are welcome.

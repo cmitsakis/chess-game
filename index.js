@@ -18,7 +18,10 @@ template.innerHTML = `
           &#62;
         </button>
       </div>
-      <div id="moves-scroll" style="width: 8em; max-height: 22em; margin: 0.5em; overflow: auto; scroll-behavior: smooth;">
+      <div style="display: flex; justify-content: space-evenly; margin: 0.5em 0em 0em 0em;">
+        <button id="btn-autoplay" style="font-size: 1em;">&#x25B6;</button>
+      </div>
+      <div id="moves-scroll" style="width: 8em; max-height: 20em; margin: 0.5em; overflow: auto; scroll-behavior: smooth;">
         <table style="font-size: 1em;">
           <tbody id="moves"></tbody>
         </table>
@@ -54,9 +57,21 @@ class ChessGame extends HTMLElement {
     this.shadowRoot.getElementById('next').onclick = () => this._next();
     this.shadowRoot.getElementById('prev').onclick = () => this._prev();
     this.update(this.currentPositionIndex);
+
+    this.autoplayEnabled = this.hasAttribute('autoplay');
+    if (this.autoplayEnabled) {
+      this._autoplayStart();
+    }
+    this.shadowRoot.getElementById('btn-autoplay').onclick = () => {
+      this.autoplayEnabled = !this.autoplayEnabled;
+      if (this.autoplayEnabled) {
+        this._autoplayStart();
+      }
+    };
   }
 
   _next() {
+    this.autoplayEnabled = false;
     if (this.currentPositionIndex >= this.positions.length - 1) {
       return;
     }
@@ -64,10 +79,38 @@ class ChessGame extends HTMLElement {
   }
 
   _prev() {
+    this.autoplayEnabled = false;
     if (this.currentPositionIndex <= 0) {
       return;
     }
     this.update(--this.currentPositionIndex);
+  }
+
+  _nextLoop() {
+    if (!this.autoplayEnabled) {
+      this._autoplayStop();
+      return;
+    }
+    if (this.currentPositionIndex >= this.positions.length - 1) {
+      this.currentPositionIndex = 0;
+    } else {
+      this.currentPositionIndex++;
+    }
+    this.update(this.currentPositionIndex);
+  }
+
+  _autoplayStart() {
+    const autoplayPeriod = this.getAttribute('autoplay-period') || 1000;
+    if (this.autoplayIntervalId) {
+      clearInterval(this.autoplayIntervalId);
+    }
+    this.autoplayIntervalId = setInterval(() => this._nextLoop(), autoplayPeriod);
+    this.shadowRoot.getElementById('btn-autoplay').innerHTML = '&#x25A0;';
+  }
+
+  _autoplayStop() {
+    clearInterval(this.autoplayIntervalId);
+    this.shadowRoot.getElementById('btn-autoplay').innerHTML = '&#x25B6;';
   }
 
   update(currentPositionIndex) {
