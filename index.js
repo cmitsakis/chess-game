@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0
 
 import { Chess } from 'chess.js'
+import { GChessBoardElement } from 'gchessboard'
 
 const template = document.createElement('template');
 template.innerHTML = `

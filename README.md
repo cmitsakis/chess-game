@@ -22,11 +22,11 @@ Not recommended for production use yet.
     <script type="importmap">
       {
         "imports": {
-          "chess.js": "https://unpkg.com/chess.js@^0.13.3"
+          "chess.js": "https://unpkg.com/chess.js@^0.13.3",
+          "gchessboard": "https://unpkg.com/gchessboard@^0.3.1"
         }
       }
     </script>
-    <script type="module" src="https://unpkg.com/gchessboard@^0.3.1"></script>
     <script type="module" src="https://unpkg.com/chess-game"></script>
   </head>
   <body>
@@ -44,7 +44,6 @@ You can remove *es-module-shims.js* and the *import map*:
 ```html
 <html>
   <head>
-    <script type="module" src="https://unpkg.com/gchessboard@^0.3.1"></script>
     <script type="module" src="/index.js"></script>
   </head>
   <body>
@@ -53,8 +52,13 @@ You can remove *es-module-shims.js* and the *import map*:
 </html>
 ```
 
-In that case you have to download [index.js](index.js) and [chess.js](https://unpkg.com/chess.js@^0.13.3/chess.js) to the root directory of your web server,
-and modify `index.js` to import `chess.js` like this: `import { Chess } from './chess.js'`.
+In that case you have to download [index.js](index.js), [chess.js](https://unpkg.com/chess.js@^0.13.3/chess.js) and [gchessboard](https://unpkg.com/gchessboard@^0.3.1) to the root directory of your web server,
+and modify `index.js` import statements like this:
+
+```javascript
+import { Chess } from './chess.js'
+import { GChessBoardElement } from './gchessboard.js' // or whatever filename you choose for gchessboard
+```
 
 ### Autoplay
 

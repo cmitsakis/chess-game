@@ -17,6 +17,7 @@
   "author": "Charalampos Mitsakis",
   "license": "Apache-2.0",
   "dependencies": {
-    "chess.js": "^0.13.3"
+    "chess.js": "^0.13.3",
+    "gchessboard": "^0.3.1"
   }
 }
