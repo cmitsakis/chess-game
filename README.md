@@ -15,21 +15,18 @@ Not recommended for production use yet.
 
 ## Usage
 
-The following HTML snippet only works on Chrome (because of *importmap*).
-
-You can make it work on Firefox by downloading `index.js` and `https://unpkg.com/chess.js` to the root directory of your web server, and modify `index.js` to import `chess.js` like this: `import { Chess } from './chess.js'`
-
 ```html
 <html>
   <head>
+    <script async src="https://unpkg.com/es-module-shims/dist/es-module-shims.js"></script>
     <script type="importmap">
       {
         "imports": {
-          "chess.js": "https://unpkg.com/chess.js"
+          "chess.js": "https://unpkg.com/chess.js@^0.13.3"
         }
       }
     </script>
-    <script type="module" src="https://unpkg.com/gchessboard"></script>
+    <script type="module" src="https://unpkg.com/gchessboard@^0.3.1"></script>
     <script type="module" src="https://unpkg.com/chess-game"></script>
   </head>
   <body>
@@ -37,6 +34,27 @@ You can make it work on Firefox by downloading `index.js` and `https://unpkg.com
   </body>
 </html>
 ```
+
+*es-module-shims.js* is needed because most browsers other than Chrome don't support *import map*.
+
+### Without import map
+
+You can remove *es-module-shims.js* and the *import map*:
+
+```html
+<html>
+  <head>
+    <script type="module" src="https://unpkg.com/gchessboard@^0.3.1"></script>
+    <script type="module" src="/index.js"></script>
+  </head>
+  <body>
+    <chess-game pgn="1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.Bb5+ c6 7.dxc6 bxc6 8.Qf3 Rb8"></chess-game>
+  </body>
+</html>
+```
+
+In that case you have to download [index.js](index.js) and [chess.js](https://unpkg.com/chess.js@^0.13.3/chess.js) to the root directory of your web server,
+and modify `index.js` to import `chess.js` like this: `import { Chess } from './chess.js'`.
 
 ### Autoplay
 
