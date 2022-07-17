@@ -27,7 +27,7 @@ Not recommended for production use yet.
         }
       }
     </script>
-    <script type="module" src="https://unpkg.com/chess-game@^0.1.0"></script>
+    <script type="module" src="https://unpkg.com/chess-game@^0.1.1"></script>
   </head>
   <body>
     <chess-game pgn="1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.Bb5+ c6 7.dxc6 bxc6 8.Qf3 Rb8"></chess-game>
