@@ -23,6 +23,8 @@ template.innerHTML = `
         <button id="btn-autoplay" style="font-size: 1em;">&#x25B6;</button>
         <button id="btn-flip" style="font-size: 1em;">&duarr;</button>
       </div>
+      <div id="error-msg" style="width: 8em; max-height: 20em; margin: 0em auto; background-color: #f04040; color: white;">
+      </div>
       <div id="moves-scroll" style="width: 8em; max-height: 20em; margin: 0.5em; overflow: auto; scroll-behavior: smooth;">
         <table style="font-size: 1em;">
           <tbody id="moves"></tbody>
@@ -39,9 +41,14 @@ class ChessGame extends HTMLElement {
   }
 
   connectedCallback() {
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+
     // load pgn
     const game1 = new Chess();
-    game1.load_pgn(this.getAttribute('pgn'));
+    if (!game1.load_pgn(this.getAttribute('pgn'))) {
+      this.shadowRoot.getElementById('error-msg').textContent = "invalid PGN: " + this.getAttribute('pgn');
+      return;
+    }
 
     // calculate all positions
     const positions = [];
@@ -55,10 +62,8 @@ class ChessGame extends HTMLElement {
 
     this.history = game1.history();
 
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.shadowRoot.getElementById('next').onclick = () => this._next();
     this.shadowRoot.getElementById('prev').onclick = () => this._prev();
-    this.update(this.currentPositionIndex);
 
     this.autoplayEnabled = this.hasAttribute('autoplay');
     if (this.autoplayEnabled) {
@@ -87,6 +92,8 @@ class ChessGame extends HTMLElement {
       })();
       boardElement.setAttribute('orientation', flippedOrientation);
     };
+
+    this.update(this.currentPositionIndex);
   }
 
   _next() {

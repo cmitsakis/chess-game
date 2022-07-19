@@ -60,6 +60,14 @@ import { Chess } from './chess.js'
 import { GChessBoardElement } from './gchessboard.js' // or whatever filename you choose for gchessboard
 ```
 
+### Size
+
+All elements are sized in *em* units, so you can change the size of the web component by changing the font size:
+
+```html
+    <chess-game style="font-size: 2em;" pgn="1.e4 e5 2.Nf3 Nc6"></chess-game>
+```
+
 ### Autoplay
 
 Users can enable/disable autoplay by clicking the autoplay button.
