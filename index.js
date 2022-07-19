@@ -71,6 +71,10 @@ class ChessGame extends HTMLElement {
       }
     };
 
+    if (this.hasAttribute('orientation')) {
+      this.shadowRoot.getElementById('board').setAttribute('orientation', this.getAttribute('orientation'));
+    }
+
     this.shadowRoot.getElementById('btn-flip').onclick = () => {
       const boardElement = this.shadowRoot.getElementById('board');
       const orientation = boardElement.getAttribute('orientation') || 'white';

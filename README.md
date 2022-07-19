@@ -77,6 +77,18 @@ You can use the `autoplay-period` attribute to set the period in milliseconds:
     <chess-game autoplay-period=1500 pgn="1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.Bb5+ c6 7.dxc6 bxc6 8.Qf3 Rb8"></chess-game>
 ```
 
+### Chessboard orientation
+
+Users can flip the board by clicking the ⇵ button.
+
+By default the chessboard is displayed from the white side.
+
+You can set the orienation to black:
+
+```html
+    <chess-game orientation="black" pgn="1.e4 e5 2.Nf3 Nc6"></chess-game>
+```
+
 ## Contributing
 
 Bug reports, bug fixes, and UI improvements, are welcome.
