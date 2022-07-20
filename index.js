@@ -45,14 +45,21 @@ class ChessGame extends HTMLElement {
 
     // load pgn
     const game1 = new Chess();
-    if (!game1.load_pgn(this.getAttribute('pgn'))) {
+    if (!game1.load_pgn(this.getAttribute('pgn'), {sloppy: true})) {
       this.shadowRoot.getElementById('error-msg').textContent = "invalid PGN: " + this.getAttribute('pgn');
       return;
     }
 
     // calculate all positions
     const positions = [];
-    const game2 = new Chess();
+    const game2 = (() => {
+      const initialPosition = game1.header()['FEN'];
+      if (initialPosition) {
+        return new Chess(initialPosition);
+      } else {
+        return new Chess();
+      }
+    })();
     positions.push(game2.fen());
     for(const move of game1.history()) {
       game2.move(move);

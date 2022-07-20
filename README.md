@@ -60,6 +60,19 @@ import { Chess } from './chess.js'
 import { GChessBoardElement } from './gchessboard.js' // or whatever filename you choose for gchessboard
 ```
 
+### Initial position
+
+You can set an intial position by adding a *FEN* tag to the *PGN*:
+
+```html
+<chess-game pgn='[FEN "6rk/3r1pp1/4p2p/1pp1P2P/p5N1/1P1PQ1R1/2P2PK1/q7 b - - 3 35"]
+
+1. ... Kh7
+2. Qxh6+ gxh6
+3. Nf6+ Kh8
+4. Rxg8# *'></chess-game>
+```
+
 ### Size
 
 All elements are sized in *em* units, so you can change the size of the web component by changing the font size:
