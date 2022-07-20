@@ -60,6 +60,7 @@ class ChessGame extends HTMLElement {
         return new Chess();
       }
     })();
+    this.firstTurn = game2.turn();
     positions.push(game2.fen());
     for(const move of game1.history()) {
       game2.move(move);
@@ -150,17 +151,23 @@ class ChessGame extends HTMLElement {
     const currentPosition = this.positions[currentPositionIndex];
     this.shadowRoot.getElementById('board').setAttribute("fen", currentPosition);
     const movesHtmlArray = [];
-    this.history.forEach(function (move, i) {
-      if (i % 2 == 0) {
+    this.history.forEach((move, i) => {
+      const j = (this.firstTurn === 'b') ? i+1 : i;
+      if (j % 2 == 0) {
         movesHtmlArray.push('<tr>');
-        movesHtmlArray.push('<td>' + (i+2)/2 + '.</td>');
+        movesHtmlArray.push('<td>' + (j+2)/2 + '.</td>');
+      }
+      if (i === 0 && this.firstTurn === 'b') {
+          movesHtmlArray.push('<tr>');
+          movesHtmlArray.push('<td>1.</td>');
+          movesHtmlArray.push('<td>...</td>');
       }
       if (i+1 === currentPositionIndex) {
         movesHtmlArray.push('<td id="current-move" style="outline: 2px solid #000;">' + move + '</td>');
       } else {
         movesHtmlArray.push('<td>' + move + '</td>');
       }
-      if (i % 2 == 1) {
+      if (j % 2 == 1) {
         movesHtmlArray.push('</tr>');
       }
     });
